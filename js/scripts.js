@@ -8,7 +8,7 @@ const description = (pokemon) => {
   }
 };
 
-// IIFE including the functions getAll and add
+// IIFE including the functions getAll, add, and findByName
 let pokemonRepository = (function () {
   let pokemonList = [
     { name: "Charmander", type: ["fire"], height: "1.6" },
@@ -41,9 +41,17 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
+  // Public function to find a Pokemon by name
+  function findByName(name) {
+    return pokemonList.filter(
+      (pokemon) => pokemon.name.toLowerCase() === name.toLowerCase()
+    );
+  }
+
   return {
     add: add,
     getAll: getAll,
+    findByName: findByName,
   };
 })();
 
