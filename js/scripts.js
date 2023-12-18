@@ -15,8 +15,14 @@ let pokemonRepository = (function () {
     { name: "Squirtle", type: ["Water"], height: "0.5" },
     { name: "Bulbasaur", type: ["Grass"], height: "0.2" },
   ];
+
   function add(pokemon) {
-    pokemonList.push(pokemon);
+    // Check if the parameter is an object
+    if (typeof pokemon === "object" && pokemon !== null) {
+      pokemonList.push(pokemon);
+    } else {
+      console.error("Invalid data type. Please provide an object.");
+    }
   }
 
   function getAll() {
