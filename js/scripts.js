@@ -8,26 +8,39 @@ const description = (pokemon) => {
   }
 };
 
-//Pokemons with the height>0.5, and <1.5 will be considered average size. Height > 1.5 are consider big pokemn.
-//The rest will be considered as small
+// IIFE including the functions getAll and add
+let pokemonRepository = (function () {
+  let pokemonList = [
+    { name: "Charmander", type: ["fire"], height: "1.6" },
+    { name: "Squirtle", type: ["Water"], height: "0.5" },
+    { name: "Bulbasaur", type: ["Grass"], height: "0.2" },
+  ];
+  function add(pokemon) {
+    pokemonList.push(pokemon);
+  }
 
-let pokemonList = [
-  { name: "Charmander", type: ["fire"], height: "1.6" }, //pokemon objects
-  { name: "Squirtle", type: ["Water"], height: "0.5" },
-  { name: "Bulbasaur", type: ["Grass"], height: "0.2" },
-];
-for (let i = 0; i < pokemonList.length; i++) {
+  function getAll() {
+    return pokemonList;
+  }
+
+  return {
+    add: add,
+    getAll: getAll,
+  };
+})();
+
+// Retrieve pokemonList array from IIFE
+let pokemonList = pokemonRepository.getAll();
+
+pokemonList.forEach((pokemon) => {
   document.write(
     "<p>" +
-      pokemonList[i].name +
+      pokemon.name +
       " " +
       "(height: " +
-      pokemonList[i].height +
+      pokemon.height +
       ")" +
-      description(pokemonList[i]) +
-      "" +
-      "<p>"
+      description(pokemon) +
+      "</p>"
   );
-}
-
-// Condition that establishes the height from pokemons, using the array pokemonList = i
+});
