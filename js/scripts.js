@@ -16,10 +16,22 @@ let pokemonRepository = (function () {
     { name: "Bulbasaur", type: ["Grass"], height: "0.2" },
   ];
 
+  // Specify the expected keys for the Pokemon object
+  const expectedKeys = ["name", "type", "height"];
+
   function add(pokemon) {
     // Check if the parameter is an object
     if (typeof pokemon === "object" && pokemon !== null) {
-      pokemonList.push(pokemon);
+      // Check if all expected keys are present
+      const keys = Object.keys(pokemon);
+      if (expectedKeys.every((key) => keys.includes(key))) {
+        pokemonList.push(pokemon);
+      } else {
+        console.error(
+          "Invalid keys. Please provide an object with keys: " +
+            expectedKeys.join(", ")
+        );
+      }
     } else {
       console.error("Invalid data type. Please provide an object.");
     }
