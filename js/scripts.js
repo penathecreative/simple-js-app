@@ -48,25 +48,44 @@ let pokemonRepository = (function () {
     );
   }
 
+  // Add event listener to the button
+  function addEventListenerToButton(button, pokemon) {
+    button.addEventListener("click", function () {
+      showDetails(pokemon);
+    });
+  }
+
+  // Funnction that defines the Pokemon button and class
+  function addListItem(pokemon) {
+    let pokemonList = document.querySelector(".pokemon-list");
+    let listpokemon = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("button-class");
+
+    //Event Listener linked with the show details funtion
+    addEventListenerToButton(button, pokemon);
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);
+  }
+
+  //Show Details Function that will be usedin a future task
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  }
+
   return {
     add: add,
     getAll: getAll,
     findByName: findByName,
+    addListItem: addListItem,
   };
 })();
 
 // Retrieve pokemonList array from IIFE
 let pokemonList = pokemonRepository.getAll();
 
-pokemonList.forEach((pokemon) => {
-  document.write(
-    "<p>" +
-      pokemon.name +
-      " " +
-      "(height: " +
-      pokemon.height +
-      ")" +
-      description(pokemon) +
-      "</p>"
-  );
+// Iterate over the Pokemon list and add each Pokemon as a list item with a button
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
 });
