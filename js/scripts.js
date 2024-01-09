@@ -12,6 +12,7 @@ const description = (pokemon) => {
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
+  let modalContainer = document.querySelector("#pokemon-modal");
 
   // Specify the expected keys for the Pokemon object
   const expectedKeys = ["name", "types", "height"];
@@ -74,6 +75,7 @@ let pokemonRepository = (function () {
         json.results.forEach(function (item) {
           let pokemon = {
             name: item.name,
+            height: item.height,
             detailsUrl: item.url,
           };
           add(pokemon);
@@ -102,11 +104,51 @@ let pokemonRepository = (function () {
         console.error(e);
       });
   }
+  // Function to show modal with Pokemon details
+  function showModal(pokemon) {
+    let modalTitle = document.getElementById("modal-title");
+    modalTitle.innerText = pokemon.name;
+
+    let modalContent = document.getElementById("modal-height");
+    modalContent.innerText = "Height: " + pokemon.height;
+
+    let imageElement = document.getElementById("modal-image");
+    imageElement.src = pokemon.imageUrl;
+
+    // Clear existing modal content
+    modalContainer.innerHTML = "";
+
+    modalContainer.appendChild(modalTitle);
+    modalContainer.appendChild(modalContent);
+    modalContainer.appendChild(imageElement);
+
+    modalContainer.classList.add("is-visible");
+  }
+
+  //Funtion that will hide pokemon details,once clicked out
+  function hideModal() {
+    modalContainer.classList.remove("is-visible");
+  }
+
+  // Event listener for keyboard (Escape key)
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modalContainer.classList.contains("is-visible")) {
+      hideModal();
+    }
+  });
+
+  // Event listener for clicking outside the modal
+  modalContainer.addEventListener("click", (e) => {
+    let target = e.target;
+    if (target === modalContainer) {
+      hideModal();
+    }
+  });
 
   //Show Details Function
   function showDetails(item) {
     pokemonRepository.loadDetails(item).then(function () {
-      console.log(item);
+      pokemonRepository.showModal(item);
     });
   }
 
@@ -117,6 +159,8 @@ let pokemonRepository = (function () {
     addListItem: addListItem,
     loadList: loadList,
     loadDetails: loadDetails,
+    showModal: showModal,
+    hideModal: hideModal,
   };
 })();
 
