@@ -26,8 +26,12 @@
   align-items: center;
 }
 
+#pokemon-modal.is-visible {
+  display: flex; /* Change to flex to make it visible */
+}
+
 /* Modal Content */
-#modal-content {
+.modal-content {
   background-color: white;
   padding: 20px;
   border-radius: 8px;
@@ -36,7 +40,7 @@
 }
 
 /* Modal Title */
-#modal-title {
+.modal-content h2 {
   font-size: 24px;
   font-weight: bold;
   color: #333;
@@ -44,14 +48,14 @@
 }
 
 /* Modal Height */
-#modal-height {
+.modal-content p {
   font-size: 16px;
   color: #666;
   margin-bottom: 15px;
 }
 
 /* Modal Image */
-#modal-image {
+.modal-content img {
   max-width: 100%;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
