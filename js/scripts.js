@@ -44,6 +44,13 @@ let pokemonRepository = (function () {
     );
   }
 
+  // Show Details Function
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function () {
+      showModal(pokemon);
+    });
+  }
+
   // Add event listener to the button
   function addEventListenerToButton(button, pokemon) {
     button.addEventListener("click", function () {
@@ -158,6 +165,7 @@ let pokemonRepository = (function () {
     loadDetails: loadDetails,
     showModal: showModal,
     hideModal: hideModal,
+    showDetails: showDetails,
   };
 })();
 
