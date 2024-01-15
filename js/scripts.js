@@ -44,13 +44,6 @@ let pokemonRepository = (function () {
     );
   }
 
-  // Show Details Function
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-      showModal(pokemon);
-    });
-  }
-
   // Add event listener to the button
   function addEventListenerToButton(button, pokemon) {
     button.addEventListener("click", function () {
@@ -66,8 +59,11 @@ let pokemonRepository = (function () {
     button.innerText = pokemon.name;
     button.classList.add("button-class");
 
-    //Event Listener linked with the show details funtion
-    addEventListenerToButton(button, pokemon);
+    // Event Listener linked with the showDetails function
+    button.addEventListener("click", function () {
+      showDetails(pokemon);
+    });
+
     listpokemon.appendChild(button);
     pokemonList.appendChild(listpokemon);
   }
@@ -111,6 +107,7 @@ let pokemonRepository = (function () {
         console.error(e);
       });
   }
+
   // Function to show modal with Pokemon details
   function showModal(pokemon) {
     let modalContent = document.createElement("div");
@@ -134,6 +131,13 @@ let pokemonRepository = (function () {
     modalContainer.appendChild(modalContent);
 
     modalContainer.classList.add("is-visible");
+  }
+
+  // Show Details Function
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function () {
+      showModal(pokemon);
+    });
   }
 
   //Funtion that will hide pokemon details,once clicked out
