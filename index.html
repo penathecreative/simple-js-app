@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple JS App</title>
+    <link href="https://fonts.cdnfonts.com/css/pokemon-solid?styles=24573" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -12,8 +13,8 @@
 </head>
 
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Pokedex App</a>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light custom navbar">
+        <a class="navbar-brand" href="#"> Pokedex</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#toggleMobileMenu"
             aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,27 +22,28 @@
 
 
         <div class="collapse navbar-collapse" id="toggleMobileMenu">
-            <ul class="navbar-nav text-center">
-                <li>
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="#">About</a>
-                </li>
-            </ul>
+
             <form id="searchForm" class="form-inline my-2 my-lg-0 ml-auto">
                 <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search"
                     aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-dark my-2 my-sm-0 custom-search-button" type="submit">Search</button>
             </form>
 
         </div>
 
     </nav>
 
+    <div class="infoText">Click and find the good in every Pokemon, and scroll down to discover more!
+
+    </div>
 
 
-    <ul class='pokemon-list list-unstyled'></ul>
+
+
+    <div class="row pokemon-list">
+        <ul class="pokemon-list list-unstyled"></ul>
+    </div>
+
 
     <!-- Modal Content -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -79,6 +81,8 @@
     <script src="js/scripts.js"></script>
     <script src="js/fetch-polyfill.js"></script>
     <script src="js/polyfill.js"></script>
+
+
 
 </body>
 

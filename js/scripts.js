@@ -37,11 +37,20 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-  // Public function to find a Pokemon by name
   function findByName(name) {
-    return pokemonList.filter(
-      (pokemon) => pokemon.name.toLowerCase() === name.toLowerCase()
-    );
+    // Check if the search query is not empty
+    if (name.length > 0) {
+      // Filter the pokemonList based on the partial match
+      const searchResults = pokemonList.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(name.toLowerCase())
+      );
+
+      // Return the filtered results
+      return searchResults;
+    } else {
+      // If the search query is empty, return the entire pokemonList
+      return pokemonList;
+    }
   }
 
   // Show Details Function
@@ -61,10 +70,25 @@ let pokemonRepository = (function () {
   // Funnction that defines the Pokemon button and class
   function addListItem(pokemon) {
     let pokemonList = document.querySelector(".pokemon-list");
-    let listpokemon = document.createElement("li");
+    let listpokemon = document.createElement("div");
+    listpokemon.classList.add(
+      "col-12",
+      "col-sm-8",
+      "col-md-4",
+      "col-lg-3",
+      "col-xl-2"
+    );
+
     let button = document.createElement("button");
     button.innerText = pokemon.name;
-    button.classList.add("btn", "btn-outline-success", "m-2", "p-3");
+    button.classList.add(
+      "btn",
+      "btn-outline-dark",
+      "btn-pokemon",
+      "btn-lg",
+      "m-2",
+      "p-3"
+    );
 
     // Event Listener linked with the showDetails function
     addEventListenerToButton(button, pokemon);
@@ -149,6 +173,39 @@ let pokemonRepository = (function () {
       hideModal();
     }
   });
+
+  // Event listener for the search form
+  document
+    .getElementById("searchForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get the search query from the input field
+      const searchQuery = document.getElementById("searchInput").value;
+
+      // Perform the live search with partial matching using the modified findByName function
+      const searchResults = findByName(searchQuery);
+
+      // Display the search results, you can update this part based on your UI logic
+      if (searchResults.length > 0) {
+        // Clear existing Pokemon list
+        clearPokemonList();
+
+        // Add each Pokemon from the search results
+        searchResults.forEach(function (pokemon) {
+          pokemonRepository.addListItem(pokemon);
+        });
+      } else {
+        // If no results, you may want to display a message or handle it accordingly
+        console.log("No Pokemon found matching the search query.");
+      }
+    });
+
+  // Function to clear existing Pokemon list
+  function clearPokemonList() {
+    let pokemonListElement = document.querySelector(".pokemon-list");
+    pokemonListElement.innerHTML = ""; // Clear the content of the list
+  }
 
   return {
     add: add,

@@ -1,20 +1,34 @@
 body {
-  padding-top: 56px;
+  padding-top: 90px;
 }
 
-.button-class {
+.navbar-brand {
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: 40px;
+  font-weight: normal;
+}
+
+.custom-navbar {
+  height: 100px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.infoText {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 20px;
+}
+
+.btn-pokemon {
   background-color: whitesmoke;
-  border: none;
   padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  color: black;
-  border: 2px solid green;
+  border: 4px solid;
+  width: 100%;
+}
+
+.custom-search-button {
+  font-weight: bold;
 }
 
 /* Modal Container */
