@@ -1,7 +1,7 @@
 const description = (pokemon) => {
-  if (pokemon.height > 1.5) {
+  if (pokemon.height > 9) {
     return " - Wow! That's big!";
-  } else if (pokemon.height >= 0.5 && pokemon.height <= 1.5) {
+  } else if (pokemon.height >= 0.5 && pokemon.height <= 9) {
     return " - Average size Pokemon ";
   } else {
     return " - Small Pokemon ";
@@ -143,12 +143,16 @@ let pokemonRepository = (function () {
     let modalBody = modalContainer.find(".modal-body");
 
     modalTitle.text(pokemon.name);
+    //Map Function to get the types in a string
+    const types = pokemon.types.map((type) => type.type.name);
+
     modalBody.html(`
       <p>${description(pokemon)}</p>
       <p>Height: ${pokemon.height}</p>
       <img src="${pokemon.imageUrl}" alt="${
       pokemon.name
     } image" class="img-fluid">
+    <p>Types: ${types.join(", ")}</p>
     `);
 
     modalContainer.modal("show");
