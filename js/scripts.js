@@ -190,7 +190,7 @@ let pokemonRepository = (function () {
       // Perform the live search with partial matching using the modified findByName function
       const searchResults = findByName(searchQuery);
 
-      // Display the search results, you can update this part based on your UI logic
+      // Display the search results, than can be updated to this part based on the UI logic
       if (searchResults.length > 0) {
         // Clear existing Pokemon list
         clearPokemonList();
@@ -200,7 +200,7 @@ let pokemonRepository = (function () {
           pokemonRepository.addListItem(pokemon);
         });
       } else {
-        // If no results, you may want to display a message or handle it accordingly
+        // If no results, display a message or handle it accordingly
         console.log("No Pokemon found matching the search query.");
       }
     });
