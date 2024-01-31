@@ -178,32 +178,28 @@ let pokemonRepository = (function () {
     }
   });
 
-  // Event listener for the search form
-  document
-    .getElementById("searchForm")
-    .addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent form submission
+  // Event listener for the search input
+  document.getElementById("searchInput").addEventListener("input", function () {
+    // Get the search query from the input field
+    const searchQuery = document.getElementById("searchInput").value;
 
-      // Get the search query from the input field
-      const searchQuery = document.getElementById("searchInput").value;
+    // Perform the live search with partial matching using the modified findByName function
+    const searchResults = findByName(searchQuery);
 
-      // Perform the live search with partial matching using the modified findByName function
-      const searchResults = findByName(searchQuery);
+    // Display the search results, which can be updated based on the UI logic
+    if (searchResults.length > 0) {
+      // Clear existing Pokemon list
+      clearPokemonList();
 
-      // Display the search results, than can be updated to this part based on the UI logic
-      if (searchResults.length > 0) {
-        // Clear existing Pokemon list
-        clearPokemonList();
-
-        // Add each Pokemon from the search results
-        searchResults.forEach(function (pokemon) {
-          pokemonRepository.addListItem(pokemon);
-        });
-      } else {
-        // If no results, display a message or handle it accordingly
-        console.log("No Pokemon found matching the search query.");
-      }
-    });
+      // Add each Pokemon from the search results
+      searchResults.forEach(function (pokemon) {
+        pokemonRepository.addListItem(pokemon);
+      });
+    } else {
+      // If no results, display a message or handle it accordingly
+      console.log("No Pokemon found matching the search query.");
+    }
+  });
 
   // Function to clear existing Pokemon list
   function clearPokemonList() {
