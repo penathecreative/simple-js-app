@@ -34,26 +34,6 @@ The Pokedex App is a simple web application that allows users to explore a list 
 - Browse the list of Pokemon and click on a Pokemon to see more details.
 - Use the search bar to perform a live search for specific Pokemon by name.
 
-## Development
-
-To further develop or customize the app:
-
-1. **Install Dependencies:**
-
-   ```bash
-   npm install
-   ```
-
-2. **Make Changes:**
-
-   Make changes to the source code as needed.
-
-3. **Build the Project:**
-
-   ```bash
-   npm run build
-   ```
-
 4. **Open the App:**
 
    Open the `index.html` file in your browser.
